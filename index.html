@@ -4,24 +4,80 @@
     <meta charset="UTF-8" />
     <title>Login page (with Firebase)</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/firebaseAuth.js"></script>
 </head>
     <body>
-        <div id="content_container">
-            <div id="form_container">
-                <div id="login_title">
-                    <h1>Login</h1>
-                </div>
-                <div id="input_container">
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="email" name="email" placeholder="Email">
-                    <input type="password" name="password" placeholder="Password">
-                </div>
-                <div id="btn_container">
-                    <button onclick="login()">Login</button>
-                    <button onclick="register()">Register</button>
-                </div>
+        <div class="container" id="signup" style="display:none;">
+            <h1 class="form-title">Register</h1>
+            <form method="post" action="">
+              <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
+              <div class="input-group">
+                 <i class="fas fa-user"></i>
+                 <input type="text"  id="firstName" placeholder="First Name" required>
+                 <label for="firstName">First Name</label>
+              </div>
+              <div class="input-group">
+                  <i class="fas fa-user"></i>
+                  <input type="text"  id="lastName" placeholder="Last Name" required>
+                  <label for="lastName">Last Name</label>
+              </div>
+              <div class="input-group">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email"  id="registerEmail" placeholder="Email" required>
+                  <label for="registerEmail">Email</label>
+              </div>
+              <div class="input-group">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" id="registerPassword"  placeholder="Password" required>
+                  <label for="registerPassword">Password</label>
+              </div>
+             <button class="btn" id="submitSignUp" >Sign Up</button>
+            </form>
+            <p class="or">
+              ----------or--------
+            </p>
+            <div class="icons">
+              <i class="fab fa-google"></i>
+              <i class="fab fa-facebook"></i>
             </div>
-        </div>
+            <div class="links">
+              <p>Already Have Account ?</p>
+              <button id="signInButton">Sign In</button>
+            </div>
+          </div>
+      
+        <div class="container" id="signIn">
+              <h1 class="form-title">Sign In</h1>
+              <form method="post" action="">
+                <div id="signInMessage" class="messageDiv" style="display:none;"></div>
+      
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email"  id="email" placeholder="Email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                  <input type="password" id="password"  placeholder="Password" required>
+                    <label for="password">Password</label>
+                </div>
+                <p class="recover">
+                  <a href="#">Recover Password</a>
+                </p>
+               <button  class="btn"  id="submitSignIn">Sign In</button>
+              </form>
+              <p class="or">
+                ----------or--------
+              </p>
+              <div class="icons">
+                <i class="fab fa-google"></i>
+                <i class="fab fa-facebook"></i>
+              </div>
+              <div class="links">
+                <p>Don't have account yet?</p>
+                <button id="signUpButton">Sign Up</button>
+              </div>
+            </div>
     </body>
     <script src="js/script.js"></script>
 </html>
