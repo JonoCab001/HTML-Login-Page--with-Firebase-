@@ -72,4 +72,33 @@ signUp.addEventListener('click', (event) => {
             showMessage('Unable to create user, please try again later', 'registerMessage');
         }
     })
+});
+
+const signIn = document.getElementById('submitSignIn');
+signIn.addEventListener('click', (event) => {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        showMessage('Login successful :)', 'signInMessage');
+
+        const user = userCredential.user;
+
+        localStorage.setItem('loggedInUserId', user.uid);
+        window.location.href = 'homepage.html';
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+
+        if (errorCode === 'auth/invalid-credential') {
+            showMessage('Invalid email or password', 'signInMessage');
+        }
+        else {
+            showMessage("Account doesn't exist", 'signInMessage');
+        }
+    })
 })
