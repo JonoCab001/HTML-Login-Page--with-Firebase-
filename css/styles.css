@@ -1,95 +1,169 @@
 /* Via ChatGPT */
-/* General Reset */
-body, html {
+/* Reset and Global Styles */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #1f4037, #99f2c8);
 }
 
-/* Main Container */
-#content_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-/* Form Container */
-#form_container {
-    width: 300px;
-    padding: 20px;
-    border-radius: 10px;
+.container {
     background: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-/* Login Title */
-#login_title h1 {
-    margin: 0 0 20px 0;
     color: #333;
-    font-size: 24px;
-    font-weight: bold;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/* Input Fields */
-#input_container input {
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #6a11cb;
+}
+
+/* Input Group */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    box-sizing: border-box;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
-#input_container input:focus {
-    border-color: #28a745;
+.input-group input:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+}
+
+.input-group label {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    font-size: 14px;
+    color: #777;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: 12px;
+    color: #6a11cb;
 }
 
 /* Buttons */
-#btn_container button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
+.btn {
+    background-color: #6a11cb;
     color: #fff;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
-/* Login Button */
-#btn_container button:nth-child(1) {
-    background-color: #1f4037;
+.btn:hover {
+    background-color: #2575fc;
 }
 
-/* Register Button */
-#btn_container button:nth-child(2) {
-    background-color: #28a745;
+.links,
+.recover {
+    text-align: center;
+    margin-top: 15px;
 }
 
-/* Button Hover Effects */
-#btn_container button:hover {
-    background-color: #555;
-    transform: scale(1.05);
+.links p,
+.recover a {
+    font-size: 14px;
+    color: #6a11cb;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-/* Button Active Effects */
-#btn_container button:active {
-    transform: scale(0.95);
+.links button {
+    background: none;
+    color: #2575fc;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.links button:hover {
+    color: #6a11cb;
+}
+
+.icons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.icons i {
+    font-size: 24px;
+    color: #6a11cb;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icons i:hover {
+    color: #2575fc;
+}
+
+.or {
+    text-align: center;
+    margin: 20px 0;
+    color: #888;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
 }
