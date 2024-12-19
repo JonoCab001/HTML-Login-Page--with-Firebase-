@@ -1,3 +1,8 @@
+ // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+ 
  // Your web app's Firebase configuration
  const firebaseConfig = {
     apiKey: "AIzaSyCnY_zRQk5Pmo8UYP4TSiMLYVFE-t7KyLg",
@@ -12,87 +17,45 @@
   const app = initializeApp(firebaseConfig);
 
   // Initialize Variables
-  const auth = firebaseConfig.auth();
-  const database = firebaseConfig.database();
+  const auth = getAuth();
+  const database = getFirestore();
 
-  // Register function
-  function register() {
-    // Get all input fields
-    username = document.getElementById('username').value;
-    email = document.getElementById('email').value;
-    password = document.getElementById('password').value;
+  onAuthStateChanged(auth, (user)=>{
+    const loggedInUserId=localStorage.getItem('loggedInUserId');
+    if(loggedInUserId){
+        console.log(user);
+        const docRef = doc(db, "users", loggedInUserId);
+        getDoc(docRef)
+        .then((docSnap)=>{
+            if(docSnap.exists()){
+                const userData=docSnap.data();
+                document.getElementById('loggedUserFirstName').innerText=userData.firstName;
+                document.getElementById('loggedUserEmail').innerText=userData.email;
+                document.getElementById('loggedUserLastName').innerText=userData.lastName;
 
-    // Validate all input fields
-    if (validateEmail(email) == false || validatePassword(password) == false) {
-        alert('Email or Password is invalid');
-        return;  // Don't continue running the code
+            }
+            else{
+                console.log("no document found matching id")
+            }
+        })
+        .catch((error)=>{
+            console.log("Error getting document");
+        })
     }
-    if (validateField(username) == false) {
-        alert('Username invalid');
-        return;
+    else{
+        console.log("User Id not Found in Local storage")
     }
+  })
 
-    // Move on with auth
-    auth.createUserWithEmailAndPassword(email, password)
-    .then(function() {
-        // Declare a new user
-        var user = auth.currentUser;
+  const logoutButton=document.getElementById('logout');
 
-        // Add user to Firebase
-        var database_ref  = database.ref();
-
-        // Create user data
-        var user_data = {
-            username: username,
-            email: email,
-            password: password,
-            last_login: Date.now()
-        }
-
-        database_ref.child('users/' + user.uid).set(user_data);
-
-        alert('User has been created successfully');
+  logoutButton.addEventListener('click',()=>{
+    localStorage.removeItem('loggedInUserId');
+    signOut(auth)
+    .then(()=>{
+        window.location.href='index.html';
     })
-    .catch(function(error) {
-        // Firebase will use this to catch any errors
-        var error_code = error.code;
-        var error_message = error.message;
-
-        alert(error_message)
+    .catch((error)=>{
+        console.error('Error Signing out:', error);
     })
-}
-
-function validateEmail(email) {
-    expression = /^[^@]+@\w+(\.\w+)+\w$/.test(str);
-    if (expression.test(email) == true) {
-        // if email valid
-        return true;
-    }
-    else {
-        // if email not valid
-        return false;
-    }
-}
-
-function validatePassword(password) {
-    // Firebase can only accept length greater than 6
-    if (password < 6) {
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-function validateField(field) {
-    if (field == null) {
-        return false;
-    }
-
-    if (field.length <= 0) {
-        return false;
-    }
-    else {
-        return true;
-    }
-}
+  })

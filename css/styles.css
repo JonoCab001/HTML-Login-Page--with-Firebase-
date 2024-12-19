@@ -10,10 +10,20 @@ body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
     color: #fff;
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+div {
+    font-weight: 400;
+    color: #fff;
+}
+
+span {
+    font-weight: 100;
+    font-size: 22px;
+    color: #fff;
 }
 
 .container {
