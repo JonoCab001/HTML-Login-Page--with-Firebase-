@@ -13,16 +13,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    display: flex;
 }
 
 div {
     font-weight: 400;
-    color: #fff;
-}
-
-span {
-    font-weight: 100;
-    font-size: 22px;
     color: #fff;
 }
 

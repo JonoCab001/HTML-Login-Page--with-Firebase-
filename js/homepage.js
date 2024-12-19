@@ -18,7 +18,7 @@ import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/11
 
   // Initialize Variables
   const auth = getAuth();
-  const database = getFirestore();
+  const db = getFirestore();
 
   onAuthStateChanged(auth, (user)=>{
     const loggedInUserId=localStorage.getItem('loggedInUserId');

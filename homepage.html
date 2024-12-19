@@ -3,15 +3,62 @@
     <head>
         <meta charset="UTF-8" />
         <title>Login page (with Firebase)</title>
-        <link rel="stylesheet" href="css/styles.css">
+        <style>
+            body {
+                background: linear-gradient(135deg, #6a11cb, #2575fc);
+                height: 100vh;
+                display: flex;
+                font-family: 'Arial', sans-serif;
+                color: #fff;
+            }
+
+            h1 {
+                text-align:center;
+            }
+        
+            button {
+                background-color: #6a11cb;
+                color: #fff;
+                border: none;
+                width: 100%;
+                padding: 15px;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            
+            button:hover {
+                background-color: #2575fc;
+            }
+            
+            button, div {
+                margin-left:15%;
+                font-size:20px;
+                padding:10px;
+            }
+            
+            div {
+                font-weight:400;
+            }
+            
+            span {
+                font-weight:600;
+                font-size:22px;
+            }
+        </style>
         <!--<script type="module" src="js/firebaseAuth.js"></script>-->
         <script type="module" src="js/homepage.js"></script>
     </head>
     <body>
-        <h1>Hello World</h1>
-        <div>First Name: <span id = "loggedUserFirstName"></span></div>
-        <div>Last Name: <span id = "loggedUserLastName"></span></div>
-        <div>Email: <span id = "loggedUserEmail"></span></div>
-        <button id="logout">Logout</button>
+        <div class="homepage">
+            <h1>Hello World</h1>
+            <div>First Name: <span id="loggedUserFirstName"></span></div>
+            <div>Last Name: <span id="loggedUserLastName"></span></div>
+            <div>Email: <span id="loggedUserEmail"></span></div>
+            <br>
+            <button id="logout">Logout</button>
+        </div>
     </body>
 </html>
